@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Project>
+  <Desktop>
+    <Static>
+      <Debug-Log>
+        
+        
+      <PreferedWindows><Position>3</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows/></PreferedWindows><ColumnWidth0>20</ColumnWidth0><ColumnWidth1>1541</ColumnWidth1></Debug-Log>
+      <Build>
+        <ColumnWidth0>20</ColumnWidth0>
+        <ColumnWidth1>1155</ColumnWidth1>
+        <ColumnWidth2>308</ColumnWidth2>
+        <ColumnWidth3>77</ColumnWidth3>
+      <PreferedWindows><Position>3</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows><Window><Factory>Debug-Log</Factory></Window><Window><Factory>Find-in-Files</Factory></Window></Windows></PreferedWindows></Build>
+      <Workspace>
+        <ColumnWidths>
+          
+          
+          
+          
+        <Column0>124</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+      </Workspace>
+      <Disassembly>
+        <col-names>
+          <item>Disassembly</item>
+          <item>_I0</item>
+        </col-names>
+        <col-widths>
+          <item>500</item>
+          <item>20</item>
+        </col-widths>
+        <DisasmHistory/>
+        <ShowCodeCoverage>1</ShowCodeCoverage>
+        <ShowInstrProfiling>1</ShowInstrProfiling>
+      </Disassembly>
+      <WATCH_1>
+        <expressions>
+          
+          
+        <item>gConfig</item><item>g485moduleReceiver</item><item>gPowerArgs</item><item>temp</item><item/></expressions>
+        <col-names>
+          
+          
+          
+          
+        <item>Expression</item><item>Location</item><item>Type</item><item>Value</item></col-names>
+        <col-widths>
+          
+          
+          
+          
+        <item>152</item><item>150</item><item>100</item><item>157</item></col-widths>
+      </WATCH_1>
+    <Find-in-Files><ColumnWidth0>473</ColumnWidth0><ColumnWidth1>78</ColumnWidth1><ColumnWidth2>710</ColumnWidth2><ColumnWidth3>315</ColumnWidth3><PreferedWindows><Position>3</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows><Window><Factory>Debug-Log</Factory></Window><Window><Factory>Build</Factory></Window></Windows></PreferedWindows></Find-in-Files></Static>
+    <Windows>
+      
+      
+      
+    <Wnd0>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-3132-2787</Identity>
+            <TabName>Workspace</TabName>
+            <Factory>Workspace</Factory>
+            <Session>
+              
+            <NodeDict><ExpandedNode>HTTP-PDU</ExpandedNode><ExpandedNode>HTTP-PDU/user</ExpandedNode></NodeDict></Session>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd0><Wnd1>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-13880-2791</Identity>
+            <TabName>Disassembly</TabName>
+            <Factory>Disassembly</Factory>
+            <Session/>
+          </Tab>
+          <Tab>
+            <Identity>TabID-21680-4077</Identity>
+            <TabName>Watch 1</TabName>
+            <Factory>WATCH_1</Factory>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>1</SelectedTab></Wnd1></Windows>
+    <Editor>
+      
+      
+      
+      
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\source\user\main.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>24</YPos2><SelStart2>721</SelStart2><SelEnd2>721</SelEnd2></Tab><ActiveTab>0</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\source\user\RS485module.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>58</YPos2><SelStart2>2423</SelStart2><SelEnd2>2423</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\source\user\process.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>158</YPos2><SelStart2>4031</SelStart2><SelEnd2>4031</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\source\user\mcu_init.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>221</YPos2><SelStart2>9394</SelStart2><SelEnd2>9394</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\source\user\process.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>0</YPos2><SelStart2>187</SelStart2><SelEnd2>187</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\source\user\att7053au.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>160</YPos2><SelStart2>5802</SelStart2><SelEnd2>5802</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\source\user\att7053au.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>84</YPos2><SelStart2>5148</SelStart2><SelEnd2>5148</SelEnd2></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\source\user\usart_debug.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd><XPos2>0</XPos2><YPos2>21</YPos2><SelStart2>1136</SelStart2><SelEnd2>1136</SelEnd2></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Positions>
+      
+      
+      
+      
+      
+    <Top><Row0><Sizes><Toolbar-00F4FF68><key>iaridepm.enu1</key></Toolbar-00F4FF68></Sizes></Row0><Row1><Sizes><Toolbar-09D4F348><key>debuggergui.enu1</key></Toolbar-09D4F348></Sizes></Row1><Row2><Sizes><Toolbar-09D4F4D8><key>armstlink.enu1</key></Toolbar-09D4F4D8></Sizes></Row2></Top><Left><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>605</Bottom><Right>198</Right><x>-2</x><y>-2</y><xscreen>200</xscreen><yscreen>170</yscreen><sizeHorzCX>125313</sizeHorzCX><sizeHorzCY>243553</sizeHorzCY><sizeVertCX>125313</sizeVertCX><sizeVertCY>869628</sizeVertCY></Rect></Wnd0></Sizes></Row0></Left><Right><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>605</Bottom><Right>523</Right><x>-2</x><y>-2</y><xscreen>200</xscreen><yscreen>170</yscreen><sizeHorzCX>125313</sizeHorzCX><sizeHorzCY>243553</sizeHorzCY><sizeVertCX>328947</sizeVertCX><sizeVertCY>869628</sizeVertCY></Rect></Wnd1></Sizes></Row0></Right><Bottom><Row0><Sizes/></Row0></Bottom><Float><Sizes/></Float></Positions>
+  </Desktop>
+</Project>
+
+

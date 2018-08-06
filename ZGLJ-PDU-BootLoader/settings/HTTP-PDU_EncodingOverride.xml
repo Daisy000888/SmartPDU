@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<userOverrides>
+  <override>
+    <path>C:\VMware_Zachary_Chou\trunk\ZGLJ-PDU-BootLoader\source\hardware\USART\usart.c</path>
+    <encoding>System</encoding>
+  </override>
+  <override>
+    <path>C:\VMware_Zachary_Chou\trunk\ZGLJ-PDU-BootLoader\source\hardware\W25QXX\w25qxx.c</path>
+    <encoding>System</encoding>
+  </override>
+  <override>
+    <path>C:\VMware_Zachary_Chou\trunk\ZGLJ-PDU-BootLoader\source\user\inc\config.h</path>
+    <encoding>System</encoding>
+  </override>
+  <override>
+    <path>C:\VMware_Zachary_Chou\trunk\ZGLJ-PDU-BootLoader\source\user\src\main.c</path>
+    <encoding>System</encoding>
+  </override>
+  <override>
+    <path>E:\Zachary Chou\ZG-PDU\ZGLJ-PDU-BootLoader\source\W25QXX\w25qxx.c</path>
+    <encoding>System</encoding>
+  </override>
+  <override>
+    <path>E:\Zachary Chou\ZG-PDU\ZGLJ-PDU-BootLoader\source\hardware\W25QXX\w25qxx.c</path>
+    <encoding>System</encoding>
+  </override>
+  <override>
+    <path>E:\Zachary Chou\ZG-PDU\ZGLJ-PDU-BootLoader\source\hardware\W25QXX\w25qxx.h</path>
+    <encoding>System</encoding>
+  </override>
+  <override>
+    <path>E:\Zachary Chou\ZG-PDU\ZGLJ-PDU-BootLoader\source\timeevent.c</path>
+    <encoding>System</encoding>
+  </override>
+  <override>
+    <path>E:\Zachary Chou\ZG-PDU\ZGLJ-PDU-BootLoader\source\usart_debug.c</path>
+    <encoding>System</encoding>
+  </override>
+  <override>
+    <path>E:\Zachary Chou\ZG-PDU\ZGLJ-PDU-Working-Dir\trunk\ZGLJ-PDU-BootLoader\source\hardware\SPI\spi.c</path>
+    <encoding>System</encoding>
+  </override>
+  <override>
+    <path>E:\Zachary Chou\ZG-PDU\ZGLJ-PDU-Working-Dir\trunk\ZGLJ-PDU-BootLoader\source\hardware\SPI\spi.h</path>
+    <encoding>System</encoding>
+  </override>
+  <override>
+    <path>E:\Zachary Chou\ZG-PDU\ZGLJ-PDU-Working-Dir\trunk\ZGLJ-PDU-BootLoader\source\hardware\USART\usart.c</path>
+    <encoding>System</encoding>
+  </override>
+  <override>
+    <path>E:\Zachary Chou\ZG-PDU\ZGLJ-PDU-Working-Dir\trunk\ZGLJ-PDU-BootLoader\source\hardware\W25QXX\w25qxx.c</path>
+    <encoding>System</encoding>
+  </override>
+  <override>
+    <path>E:\Zachary Chou\ZG-PDU\ZGLJ-PDU-Working-Dir\trunk\ZGLJ-PDU-BootLoader\source\hardware\W25QXX\w25qxx.h</path>
+    <encoding>System</encoding>
+  </override>
+  <override>
+    <path>E:\Zachary Chou\ZG-PDU\ZGLJ-PDU-Working-Dir\trunk\ZGLJ-PDU-BootLoader\source\user\inc\config.h</path>
+    <encoding>System</encoding>
+  </override>
+  <override>
+    <path>E:\Zachary Chou\ZG-PDU\ZGLJ-PDU-Working-Dir\trunk\ZGLJ-PDU-BootLoader\source\user\src\main.c</path>
+    <encoding>System</encoding>
+  </override>
+  <override>
+    <path>G:\ZG\ZG-PDU\ZGLJ-PDU-BootLoader\source\hardware\USART\usart.c</path>
+    <encoding>System</encoding>
+  </override>
+  <override>
+    <path>G:\ZG\ZG-PDU\ZGLJ-PDU-BootLoader\source\user\inc\config.h</path>
+    <encoding>System</encoding>
+  </override>
+  <override>
+    <path>G:\ZG\ZG-PDU\ZGLJ-PDU-BootLoader\source\user\src\main.c</path>
+    <encoding>System</encoding>
+  </override>
+</userOverrides>
+
+
