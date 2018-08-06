@@ -1,0 +1,99 @@
+/*全局样式*/
+*{margin: 0;padding: 0;}
+ul li{list-style: none;}
+a{text-decoration: none;}
+body{background-color: #F4F4F4;position: relative;}
+
+#top_div{display:none;width: 100%;background-color: white;position: absolute;left: 0;top: 0;filter:alpha(Opacity=80);-moz-opacity:0.5;opacity: 0.5;z-index: 998;}
+#upload_top_div{display:none;width: 100%;background-color: white;position: absolute;left: 0;top: 0;filter:alpha(Opacity=80);-moz-opacity:0.5;opacity: 0.5;z-index: 998;}
+/*头部*/
+.header{background-color: #666;}
+.nav{overflow:hidden;}
+.nav img{height: 36px;padding: 2px;}
+
+/*logo*/
+.logo{float: left;}
+
+/*标题*/
+.title{float: left;}
+.title span{font-size: 20px;font-weight: 800;color: white;line-height: 40px;margin-left: 20px;}
+
+/*用户信息*/
+.admin{float: right;margin-right: 20px;}
+.admin p{font-size: 14px;line-height: 40px;color: white;font-weight: 800;}
+.admin a{color: #FF9900;}
+
+/*告警提醒*/
+.emergency{height: 24px;background-color: #1E71B1;text-align: right;padding-right: 30px;margin-top: 1px;}
+.emergency a{font-size: 12px;font-weight:800;color: red;}
+
+
+/*设备选择下拉框*/
+.search_form{padding-right: 20px;margin: 4px;}
+.search_form label{font-size: 14px;}
+.search_form option{width: 60px;height: 20px;}
+
+
+/*内容部分*/
+.main{overflow: hidden;}
+.contain{float: right;width: 87%;}
+#frame{margin-bottom: 20px;overflow-y: scroll;}
+#frame ul li{padding-bottom: 20px;}
+
+
+/*菜单栏*/
+.menu{float: left;width: 13%;border-top: 1px solid #F4F4F4;background-color: #666;text-align: center;}
+
+.menu_title{background-color: #333;padding: 6px;}
+.menu_title span{font-size: 14px;color: white;font-weight: 800;}
+
+.menu ul li{margin-top: 4px;padding: 4px;}
+.menu ul li a{font-size: 14px;color: white;font-weight: 800;}
+
+.on{background-color: #1E71B1;}
+
+
+/*尾部*/
+.footer{text-align: center;background-color: #ccc;border-top: 1px solid #F4F4F4;}
+.footer p{color: white;font-size: 12px;margin: auto 0;padding: 10px;}
+
+
+/*表格样式*/
+.el_table{width:80%;text-align: center;margin: auto;}
+.el_table input{max-width: 60px;}
+
+.electric{margin-left: 2%;margin-top:10px;border: 1px solid #ccc;padding-bottom: 20px;}
+
+.table_content{position: relative;padding-top: 40px;}
+.el_title{font-size: 14px;font-weight: 800;position: absolute;top: 10px;left: 10%;}
+
+/*导出按钮*/
+.export{width:60px;height: 24px;position: absolute;top: 10px;right: 10%;}
+
+
+table.el_table {
+    font-family: verdana,arial,sans-serif;
+    font-size:12px;
+    color:#333333;
+    border-width: 1px;
+    border-color: #a9c6c9;
+    border-collapse: collapse;
+}
+table.el_table th {
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #a9c6c9;
+}
+table.el_table td {
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #a9c6c9;
+}
+.oddrowcolor{
+    background-color:#d4e3e5;
+}
+.evenrowcolor{
+    background-color:#c3dde0;
+}

@@ -1,0 +1,131 @@
+[Stack]
+FillEnabled=0
+OverflowWarningsEnabled=1
+WarningThreshold=90
+SpWarningsEnabled=1
+WarnLogOnly=1
+UseTrigger=1
+TriggerName=main
+LimitSize=0
+ByteLimit=50
+[Interrupts]
+Enabled=1
+[MemConfig]
+Base=1
+Manual=0
+Ddf=1
+TypeViol=0
+Stop=1
+[Simulator]
+Freq=10000000
+MultiCoreRunAll=1
+[DebugChecksum]
+Checksum=1630070530
+[CodeCoverage]
+Enabled=_ 0
+[Exceptions]
+StopOnUncaught=_ 0
+StopOnThrow=_ 0
+[CallStack]
+ShowArgs=0
+[Disassembly]
+MixedMode=1
+[SWOTraceHWSettings]
+OverrideDefaultClocks=0
+CpuClock=72000000
+ClockAutoDetect=0
+ClockWanted=2000000
+JtagSpeed=2000000
+Prescaler=36
+TimeStampPrescIndex=0
+TimeStampPrescData=0
+PcSampCYCTAP=1
+PcSampPOSTCNT=15
+PcSampIndex=0
+DataLogMode=0
+ITMportsEnable=0
+ITMportsTermIO=0
+ITMportsLogFile=0
+ITMlogFile=$PROJ_DIR$\ITM.log
+[struct_types]
+Fmt0=Config_Msg_t-addr	4	0
+Fmt1=Config_Msg_t-alarmaddr	4	0
+Fmt2=Config_Msg_t-alarmnum	3	0
+Fmt3=Config_Msg_t-datanum	3	0
+Fmt4=Config_Msg_t-outletaddr	4	0
+Fmt5=Master_Attrib_t-leak_uplimit	3	0
+Fmt6=Power_Args_slave_t-gEnergyP	4	0
+Fmt7=Upgrade_data_t-up_addr	4	0
+Fmt8=Upgrade_data_t-up_checksum	4	0
+Fmt9=Upgrade_type_t-checksum	4	0
+[array_types]
+Fmt0=uint8[2048]	4	0
+Fmt1=uint8[256]	4	0
+Fmt2=uint8[4]	3	0
+Fmt3=uint8[6]	4	0
+Fmt4=uint8[8]	4	0
+Fmt5=uint8_t[2]	4	0
+Fmt6=uint8_t[4096]	4	0
+Fmt7=uint8_t[4]	4	0
+Fmt8=uint8_t[540]	4	0
+Fmt9=uint8_t[64]	4	0
+Fmt10=uint8_t[6]	4	0
+Fmt11=uint8_t[8]	4	0
+[watch_formats]
+Fmt0={W}1:*(char *)content	4	0
+Fmt1={W}1:W25QXX_TYPE	4	0
+Fmt2={W}1:byte	4	0
+Fmt3={W}1:data	4	0
+Fmt4={W}1:j	3	0
+Fmt5={W}1:len	3	0
+Fmt6={W}1:pSendArray+13	4	0
+Fmt7={W}1:pool	3	0
+Fmt8={W}1:tempnum	3	0
+Fmt9={W}1:tempoutaddr	4	0
+Fmt10={W}1:x	3	0
+Fmt11={W}1:y	3	0
+[SWOTraceWindow]
+PcSampling=0
+InterruptLogs=0
+ForcedTimeStamps=0
+EventCPI=0
+EventEXC=0
+EventFOLD=0
+EventLSU=0
+EventSLEEP=0
+[DataLog]
+LogEnabled=0
+SumEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+ShowTimeSum=1
+[InterruptLog]
+LogEnabled=0
+SumEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+ShowTimeSum=1
+SumSortOrder=0
+[Log file]
+LoggingEnabled=_ 0
+LogFile=_ ""
+Category=_ 0
+[TermIOLog]
+LoggingEnabled=_ 0
+LogFile=_ ""
+[CallStackLog]
+Enabled=0
+[DriverProfiling]
+Enabled=0
+Mode=3
+Graph=0
+Symbiont=0
+Exclusions=
+[Disassemble mode]
+mode=0
+[Breakpoints2]
+Bp0=_ 1 "EMUL_DATA" "RS485moduleParse" 0 0 0 0 4294967295
+Count=1
+[Aliases]
+Count=0
+SuppressDialog=0

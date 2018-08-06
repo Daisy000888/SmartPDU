@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='utf-8'/>
+		<title>登陆页</title>
+
+        <style>
+            body{background-color: #3399CC;}
+
+            #main{width:100%;position: relative;}
+
+            .title{color: white;text-align: center;}
+
+            .login{margin:auto;width:300px;text-align: center;padding-top: 15%;}
+
+            .login_name{height: 40px;background-color: #333;}
+            .login_name span{font-size: 16px;font-weight:800;color: white;line-height: 40px;}
+
+            .form{background-color: #666;text-align: right;padding-right: 10%;}
+            .inp{padding-top: 15px;padding-bottom: 10px;}
+            .inp input{width: 60%;}
+
+            .sub{padding-top:20px;padding-bottom: 20px;text-align: right}
+           
+            .sub input{margin-right: 20px;width: 55px;height:24px;font-weight: 800;color: white;background-color: #169BD5;border: none;}
+
+            .footer{width:100%;position: absolute;bottom: 0;left: 0;text-align: center;}
+            .footer p{color: white;font-size: 12px;margin: auto 0;}
+        </style>
+
+	</head>
+    <body>
+      <div id="main">
+          <div class="nav">
+              <div class="title">
+                  <h1>智能PDU网页监测系统</h1>
+              </div>
+          </div>
+
+          <div class="login">
+              <div class="login_name">
+                  <span>用户登录</span>
+              </div>
+              <form class="form" action="login.cgi"  method="post" onsubmit="return login(this);">
+                  <div class="inp">
+                      <label>用户名：</label>
+                      <input type="text" id="username" name="username" value=""/>
+                  </div>
+
+                  <div class="inp">
+                      <label>密码：</label>
+                      <input type="password" id="password" name="password" value=""/>
+                  </div>
+
+                  <div class="sub">
+                      <input class="res" type="reset" value="取消"/>
+                      <input type="submit"  value="登录"/>
+                  </div>
+              </form>
+          </div>
+          <div class="footer">
+              <p>版权所有@四川中光防雷科技股份有限公司</p>
+          </div>
+      </div>
+    </body>
+</html>
+
+<script type="text/javascript">
+    window.onload = function(){
+        var  c_height = document.documentElement.clientHeight;
+        var a = c_height - 30;
+
+        document.getElementById('main').style.height = a + "px";
+    };
+
+    window.onresize = function(){
+        var  c_height = document.documentElement.clientHeight;
+        var a = c_height - 30;
+
+        document.getElementById('main').style.height = a + "px";
+    };
+
+
+    /*验证输入*/
+    function login(){
+        var user = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+
+        if(user != ''){
+            if(password != ''){
+                return true;
+            }else{
+                alert("密码不能为空");
+                return false;
+            }
+        }else{
+            alert("用户名不能为空");
+            return false;
+        }
+
+    }
+</script>
+

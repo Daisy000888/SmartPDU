@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+		 <meta http-equiv="Cache" content="no-cache">
+		 <meta http-equiv="Pragma" content="no-cache">
+         <meta http-equiv="Expires" content="0">
+         <meta http-equiv="Cache-control" content="no-cache,must-revalidate">
+
+        <title>智能PDU网页端</title>
+
+        <link href="css/global.css" rel="stylesheet">
+        <link href="css/index.css" rel="stylesheet">
+
+
+        <script type="text/javascript" defer="defer" src="js/common.js"></script>
+        <script type="text/javascript" defer="defer" src="js/websocket.js"></script>
+    </head>
+
+    <body>
+    <!--头部-->
+    <div class="header">
+        <!--导航栏-->
+        <div class="nav">
+            <div class="logo">
+                <img src="image/logo.png"/>
+            </div>
+            <div class="title">
+                <span>智能PDU网页监测系统</span>
+            </div>
+            <div class="admin" id="admins">
+                <p><b id="this_admin"></b><a href="#" onclick="login_out()"> | 退出登录</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="emergency" id="new_alarm" style="display: none">
+        <a id="alarm_text" href="#">!有新的告警信息</a>
+    </div>
+
+
+
+    <div class="main">
+        <!--菜单栏-->
+        <div  class="menu" id="menu1">
+            <div class="menu_title">
+                <span>菜单栏</span>
+            </div>
+
+            <ul>
+                <li class="on" id="page1">
+                    <a href="#">实时监测</a>
+                </li>
+                <li id="page2">
+                    <a href="#">电源数据</a>
+                </li>
+                <li id="page3">
+                    <a href="#">环境信息管理</a>
+                </li>
+                <li id="page4">
+                    <a href="#">历史告警数据</a>
+                </li>
+                <li id="page5">
+                    <a href="#">设备管理</a>
+                </li>
+                <li id="page6">
+                    <a href="#">电源管理</a>
+                </li>
+                <li id="page7">
+                    <a href="#">网络管理</a>
+                </li>
+                <li id="page8">
+                    <a href="#">用户管理</a>
+                </li>
+            </ul>
+        </div>
+        <div class="contain" id="contain_height">
+            <!--选择设备-->
+            <div class="search" id="search1">
+                <form class="search_form">
+                    <label>选择设备：</label>
+                    <select id="pdu_names">
+
+                    </select>
+                </form>
+            </div>
+
+            <hr style="color: #ccc;">
+
+            <!--引入其他页面-->
+            <div id="frame">
+               <ul>
+                   <!--实时监测-->
+                   <li id="page_one" style="position: relative">
+                       <div class="pdu_monitor">
+                           <div class="chart_header">
+                               <div class="other_data">
+                                   <span>漏流：<b id="leakcurrent">0</b></span>
+                                   <span>功率因素：<b id="powerfac">0</b></span>
+                                   <span>频率：<b id="freq">0</b></span>
+                                   <span>SPD状态：<b id="spd">无</b></span>
+                               </div>
+
+                               <div class="button_div">
+                                   <a href="#"> <button id="power_history_button">总电能历史数据</button></a>
+                                   <span><button id="del">总电能清零</button></span>
+                                   <span><b>漏电流保护模式：</b><button id="electric_switch" class="open">关</button></span>
+                               </div>
+                           </div>
+
+
+                           <!--实时监测折线图-->
+                           <div id="monitor_chart">
+                              <ul>
+                                   <li id="voltage_data">
+                                       <div>
+                                           <span>电压实时数据</span>
+                                       </div>
+                                       <div>
+                                           <canvas id="can1"></canvas>
+                                       </div>
+                                   </li>
+                                   <li id="current_data">
+                                       <div>
+                                           <span>电流实时数据</span>
+                                       </div>
+                                       <div>
+                                           <canvas id="can2"  width="500" height="220"></canvas>
+                                       </div>
+                                   </li>
+                                   <li id="power_data">
+                                       <div>
+                                           <span>功率实时数据</span>
+                                       </div>
+                                      <div>
+                                          <canvas id="can3"  width="500" height="220"></canvas>
+                                      </div>
+                                   </li>
+                                   <li id="energy_data">
+                                       <div>
+                                           <span>电能实时数据</span>
+                                       </div>
+                                      <div>
+                                          <canvas id="can4"  width="500" height="220"></canvas>
+                                      </div>
+                                   </li>
+                               </ul>
+                           </div>
+                       </div>
+
+                       <!--总电能历史数据-->
+                       <div class="electric" id="power_history" style="width:96%;position: absolute;left:2%;top: 2px;z-index: 999;background-color: #ccc;">
+                           <div class="table_content">
+                               <span class="el_title">总电能历史记录</span>
+                               <button type="button" class="export" onclick="method5('power_history_table')">导出</button>
+                               <table class="el_table" id="power_history_table">
+
+                               </table>
+
+                               <!--分页切换-->
+                               <div id="power_history_page">
+                                   <button type="button" id="power_history_prev"><span>上一页</span></button>
+                                   <button type="button" id="power_history_next"><span>下一页</span></button>
+                               </div>
+                           </div>
+                       </div>
+
+                   </li>
+
+                   <!--电源数据-->
+                   <li style="display: none;" id="page_two">
+                       <div class="table_content">
+                           <span class="el_title">电源数据</span>
+                           <button class="export" onclick="method5('alternatecolor')">导出</button>
+                           <table class="el_table" id="alternatecolor">
+                               <tr>
+                                   <th>插座名称</th>
+                                   <th>开关状态</th>
+                                   <th>电压/V</th>
+                                   <th>电流/A</th>
+                                   <th>功率/W</th>
+                                   <th>电能值/kWh</th>
+                                   <th>电能记录</th>
+                               </tr>
+                           </table>
+
+                           <!--电能历史记录-->
+                           <div id="el_his">
+                               <div style="text-align: center;">
+                                   <strong style="font-size: 14px;color: #333;">插座电能记录</strong>
+                               </div>
+                               <div style="text-align: right;margin-top: -26px;">
+                                   <button id="every_button" class="off" style="padding: 2px;font-weight: 800;">关闭</button>
+                               </div>
+
+                               <div style="margin-bottom: 6px;">
+                                   <button style="padding: 2px;" onclick="method5('every_outlet')">导出</button>
+                               </div>
+
+                               <table class="table" id="every_outlet">
+
+                               </table>
+
+                               <!--分页切换-->
+                               <div id="outlet_page">
+                                   <button type="button" id="outlet_prev"><span>上一页</span></button>
+                                   <button type="button" id="outlet_next"><span>下一页</span></button>
+                               </div>
+                           </div>
+                       </div>
+                   </li>
+
+                   <!--环境信息管理-->
+                   <li style="display: none" id="page_three">
+                       <div class="electric">
+                           <div class="table_content">
+                               <span class="el_title">环境信息管理</span>
+                               <button class="export" onclick="method5('alternatecolor1')">导出</button>
+                               <table class="el_table" id="alternatecolor1">
+                                   <tr>
+                                       <th>传感器编号</th>
+                                       <th>名称</th>
+                                       <th>当前值</th>
+                                       <th>上限值</th>
+                                       <th>下限值</th>
+                                       <th>保存配置</th>
+                                       <th>报警状态</th>
+                                       <th>编辑</th>
+                                       <th>传感器开关</th>
+                                   </tr>
+
+                                   <tbody id="environment_data">
+                                   <tr>
+                                       <td>S1</td>
+                                       <td>温度℃</td>
+                                       <td id="temperature"></td>
+                                       <form>
+                                           <td id="uplimit"> </td>
+                                           <td id="lowlimit"></td>
+                                           <td id="sub_tem"> </td>
+                                       </form>
+                                       <td id="temp_status"></td>
+                                       <td class="edit" id="tem_edit"></td>
+                                       <td><button id="t_switch"></button></td>
+                                   </tr>
+                                   <tr>
+                                       <td>S1</td>
+                                       <td>湿度%</td>
+                                       <td id="humidity"></td>
+                                       <form action="#" method="post">
+                                           <td id="hm_uplimit"></td>
+                                           <td>——</td>
+                                           <td id="sub_hm"> </td>
+                                       </form>
+                                       <td id="humi_status"></td>
+                                       <td class="edit" id="edit_humi"></td>
+                                       <td><button id="h_switch"></button></td>
+                                   </tr>
+                                   <tr>
+                                       <td>S2</td>
+                                       <td>烟雾</td>
+                                       <td>——</td>
+                                       <td>——</td>
+                                       <td>——</td>
+                                       <td>——</td>
+                                       <td id="smoke_status"></td>
+                                       <td>——</td>
+                                       <td><button id="s_switch"></button></td>
+                                   </tr>
+                                   <tr>
+                                       <td>S3</td>
+                                       <td>门禁</td>
+                                       <td>——</td>
+                                       <td>——</td>
+                                       <td>——</td>
+                                       <td>——</td>
+                                       <td id="door_status"></td>
+                                       <td>——</td>
+                                       <td><button id="d_switch"></button></td>
+                                   </tr>
+                                   <tr>
+                                       <td>S4</td>
+                                       <td>输出</td>
+                                       <td>——</td>
+                                       <td>——</td>
+                                       <td>——</td>
+                                       <td>——</td>
+                                       <td id="out_status"></td>
+                                       <td>——</td>
+                                       <td><button id="o_switch"></button></td>
+                                   </tr>
+                                   </tbody>
+                               </table>
+                           </div>
+                       </div>
+                   </li>
+
+                   <!--历史告警数据-->
+                   <li style="display: none" id="page_four">
+                       <!--内容部分-->
+                       <div class="electric">
+                           <div class="table_content">
+                               <span class="el_title">历史告警数据</span>
+                               <button class="export" onclick="method5('alternatecolor2')">导出</button>
+                               <table class="el_table" id="alternatecolor2">
+                                   <tr>
+                                       <th>序号</th>
+                                       <th>告警时间</th>
+                                       <th>告警类型</th>
+                                       <th>告警来源</th>
+                                       <th>告警阀值</th>
+                                       <th>告警值</th>
+                                       <th>是否消除</th>
+                                   </tr>
+
+                               </table>
+                           </div>
+                       </div>
+                   </li>
+
+                   <!--设备管理-->
+                   <li style="display: none;" id="page_five">
+                       <!--内容部分-->
+                       <div class="electric" style="position: relative">
+                           <h5>设备管理</h5>
+
+                           <!--设备的配置-->
+                           <div class="equipment">
+                               <ul>
+                                   <li>
+                                       <span>设备位置设置</span>
+                                       <form>
+                                           <div class="div1">
+                                               <label>选择设备：</label>
+                                               <select id="equipment_name1">
+
+                                               </select>
+                                           </div>
+
+                                           <div class="div2">
+                                               <label>设备位置：</label>
+                                               <input id="location" type="text" name="" value=""/>
+                                           </div>
+
+                                           <div class="div3">
+                                               <input id="sub_locat" type="button" value="保存设置"/>
+                                           </div>
+                                       </form>
+                                   </li>
+
+                                   <hr style="border:1px solid #ccc;margin-top:20px;margin-bottom: 20px;">
+
+                                   <li>
+                                       <span>工作模式设置</span>
+                                       <form>
+                                           <div class="div2">
+                                               <label>当前设备工作模式：</label>
+                                               <select id="mode">
+
+                                               </select>
+                                           </div>
+
+                                           <div class="div3">
+                                               <input id="sub_mode" type="button" value="保存设置"/>
+                                           </div>
+                                       </form>
+                                   </li>
+
+                                   <hr style="border:1px solid #ccc;margin-top:20px;margin-bottom: 20px;">
+
+                                   <li>
+                                       <span>系统软件升级</span>
+                                       <form>
+                                           <div class="div1">
+                                               <label>选择设备：</label>
+                                               <select id="equipment_name2">
+
+                                               </select>
+                                           </div>
+
+                                           <div class="div2">
+                                               <label>软件升级包：</label>
+                                               <input type="file" id="uploadfile"/>
+                                           </div>
+
+                                           <div class="div2">
+                                               <label id="filetype"></label>
+                                           </div>
+
+                                           <div class="div2">
+                                               <label id="filesize"></label>
+                                           </div>
+
+                                           <div class="div3">
+                                               <input id="upload" type="button" disabled="disabled" value="升级软件"/>
+                                           </div>
+                                       </form>
+                                   </li>
+                               </ul>
+                           </div>
+
+                           <!--软件升级的进度条-->
+                           <div class="div2" id="upload_progress">
+                               <progress id="progressOne" max="100" value="0"></progress>
+                               <blockquote id="Status">0%</blockquote>
+                               <div style="width: 100%;text-align: right;">
+                                   <button id="res_upload">取消</button>
+                                   <button id="stop_upload">暂停</button>
+                               </div>
+                           </div>
+
+                       </div>
+                   </li>
+
+                   <!--电源管理-->
+                   <li style="display: none" id="page_six">
+                       <div class="electric">
+                           <div class="table_content">
+                               <span class="el_title">电源管理</span>
+                               <button class="export" onclick="method5('alternatecolor3')">导出</button>
+                               <table class="el_table" id="alternatecolor3">
+                                   <tr>
+                                       <th>插座名称</th>
+                                       <th>插座类型</th>
+                                       <th>电压上限/v</th>
+                                       <th>电压下限/v</th>
+                                       <th>电流上限/A</th>
+                                       <th>功率上限/kW</th>
+                                       <th>上电时间/s</th>
+                                       <th>保存</th>
+                                       <th>电源开关</th>
+                                       <th>编辑</th>
+                                       <th>预约电源行程</th>
+                                   </tr>
+
+                                   <tbody id="el_config">
+
+                                   </tbody>
+                               </table>
+
+                               <!--电源行程预约-->
+                               <div id="appointment">
+                                   <div style="text-align: center;">
+                                       <strong style="font-size: 16px;color: #333;">电源行程预约</strong>
+                                   </div>
+                                   <div style="text-align: right;margin-top: -26px;">
+                                       <button id="close_appointment" class="off" style="padding: 2px;font-weight: 800;">关闭</button>
+                                   </div>
+
+                                   <div id="appointment_form">
+
+                                       <span>预约设置：</span>
+
+                                       <form>
+                                           <label>插座名称：</label>
+                                           <input name="outlet_num" id="appoint_outlet" disabled="disabled" value=""/>
+
+                                           <label>是否每天重复：</label>
+                                           <select name="repeat" id="appoint_repeat">
+                                               <option value="1">是</option>
+                                               <option value="0">否</option>
+                                           </select>
+
+                                           <label>时间：</label>
+                                           <input name="date" id="appoint_date" value="" placeholder="年-月-日 时-分-秒"/>
+
+                                           <label>动作：</label>
+                                           <select name="action" id="appoint_action">
+                                               <option value="1">闭合</option>
+                                               <option value="0">断开</option>
+                                           </select>
+
+                                           <button type="button" id="appoint_sub" value="">预约</button>
+                                       </form>
+                                   </div>
+
+                                   <div style="margin-top: 20px;">
+                                       <span>正在预约：</span>
+                                       <table class="table" id="every_appointment">
+
+                                       </table>
+                                   </div>
+
+                               </div>
+
+                           </div>
+                       </div>
+                   </li>
+
+                   <!--网络管理-->
+                   <li style="display: none" id="page_seven">
+                       <div class="electric">
+                           <h5>网络管理</h5>
+
+                           <!--网络配置-->
+                           <div class="internet">
+                               <ul>
+                                   <li>
+                                       <span>网络参数设置</span>
+                                       <form>
+                                           <div class="internet_data">
+                                               <div class="div3">
+                                                   <label>选择设备：</label>
+                                                   <select id="netpdu_name">
+
+                                                   </select>
+                                               </div>
+                                               <div class="div4">
+                                                   <label>MAC物理地址：</label>
+                                                   <input id="mac" type="text" onblur="is_mac()" name="" value="" placeholder="mac地址以16进制为准"/>
+                                               </div>
+
+                                               <div class="div4">
+                                                   <label>IP地址：</label>
+                                                   <input id="ip" type="text" onblur="is_ip()" name="" value=""/>
+                                               </div>
+
+                                               <div class="div4">
+                                                   <label>子网掩码：</label>
+                                                   <input id="netmask" type="text" onblur="is_mask()" name="" value=""/>
+                                               </div>
+
+                                               <div class="div4">
+                                                   <label>默认网关：</label>
+                                                   <input id="gateway" type="text" onblur="is_gateway()" name="" value=""/>
+                                               </div>
+
+                                               <div class="div4">
+                                                   <label>DNS服务器：</label>
+                                                   <input id="dnsserver" type="text" onblur="is_dns()" name="" value=""/>
+                                               </div>
+
+                                               <div class="div4">
+                                                   <label>端口号：</label>
+                                                   <input id="serverport" type="text" onblur="is_port()" name="" value=""/>
+                                               </div>
+
+                                           </div>
+
+                                           <div class="div5">
+                                               <input id="sub_internet" type="button" value="保存设置并重启"/>
+                                           </div>
+                                       </form>
+                                   </li>
+                                   <li>
+                                       <span>时间同步</span>
+                                       <form>
+                                           <div class="internet_data">
+                                               <div class="div3">
+                                                   <label>选择设备：</label>
+                                                   <select id="timepdu_name">
+
+                                                   </select>
+                                               </div>
+                                               <div class="div4">
+                                                   <label>本地PC端时间：</label>
+                                                   <input id="pctime" disabled="disabled" onblur="is_time()" type="text" name="time" value=""/>
+                                                   <a href="#" id="stop">编辑</a>
+                                               </div>
+                                           </div>
+
+                                           <div class="div5">
+                                               <input id="sub_time" type="button"  value="保存设置"/>
+                                           </div>
+                                       </form>
+                                   </li>
+                               </ul>
+                           </div>
+                       </div>
+                   </li>
+
+                   <!--用户管理-->
+                   <li style="display: none" id="admin_content">
+                       <div class="electric">
+                           <div class="table_content">
+                               <span class="el_title">用户管理</span>
+                               <button class="add" id="add_button">新增</button>
+                               <table class="el_table" id="alternatecolor4">
+
+                               </table>
+                           </div>
+
+                           <!--新增用户-->
+                           <div id="add">
+                               <span>新增用户</span>
+                               <form>
+                                   <div class="add_admin">
+                                       <label>用户名：</label>
+                                       <input id="username" type="text" placeholder="用户名只能英文或数字组成" name="username" value=""/>
+
+                                       <br>
+
+                                       <label>密码：</label>
+                                       <input id="password" type="password" name="password" value=""/>
+                                   </div>
+
+                                   <div class="add_sub">
+                                       <input type="reset" id="reset" value="取消"/>
+                                       <input id="sub_admin" type="button" onclick="add_admin()" value="提交">
+                                   </div>
+
+                               </form>
+                           </div>
+                       </div>
+                   </li>
+               </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <!--尾部-->
+    <div class="footer">
+        <p>版权所有@四川中光防雷科技股份有限公司</p>
+    </div>
+
+    <div id="top_div"></div>
+    <div id="upload_top_div"></div>
+
+    </body>
+</html>
+
+<script>
+
+ /*改变浏览器大小*/
+window.onresize = function(){
+    reheight();
+};
+
+ reheight();
+ /*自适应高度*/
+function reheight(){
+    var  c_height = document.documentElement.clientHeight;
+
+    var a = c_height * 90/100;
+    var b = a-30;
+    var d = b * 35/100;
+
+    /*覆盖的div高度*/
+    document.getElementById('top_div').style.height = c_height + "px";
+    document.getElementById('upload_top_div').style.height = c_height + "px";
+
+    /*菜单栏高度*/
+    document.getElementById('menu1').style.height = a + "px";
+
+    /*内容部分整体高度*/
+    document.getElementById('contain_height').style.height = a + "px";
+
+    /*内容部分内容高度*/
+    document.getElementById('frame').style.height = b + "px";
+
+    /*折线图部分高度*/
+    document.getElementById('voltage_data').style.height = d + "px";
+    document.getElementById('current_data').style.height = d + "px";
+    document.getElementById('power_data').style.height = d + "px";
+    document.getElementById('energy_data').style.height = d + "px";
+}
+
+
+</script>
