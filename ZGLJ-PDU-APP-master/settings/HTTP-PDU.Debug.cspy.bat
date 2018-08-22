@@ -19,6 +19,22 @@
 @REM 
 
 
-"C:\IAR Systems\Embedded Workbench 7.0\common\bin\cspybat" "C:\IAR Systems\Embedded Workbench 7.0\arm\bin\armproc.dll" "C:\IAR Systems\Embedded Workbench 7.0\arm\bin\armstlink.dll"  %1 --plugin "C:\IAR Systems\Embedded Workbench 7.0\arm\bin\armbat.dll" --device_macro "C:\IAR Systems\Embedded Workbench 7.0\arm\config\debugger\ST\STM32F1xx.dmac" --backend -B "--endian=little" "--cpu=Cortex-M3" "--fpu=None" "-p" "C:\IAR Systems\Embedded Workbench 7.0\arm\CONFIG\debugger\ST\STM32F103xE.ddf" "--semihosting" "--device=STM32F103xE" "--stlink_interface=SWD" "--stlink_reset_strategy=0,0" "--drv_swo_clock_setup=72000000,0,2000000" 
+@echo off 
 
+if not "%~1" == "" goto debugFile 
 
+@echo on 
+
+"D:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\common\bin\cspybat" -f "C:\Users\Zachary Chou\Desktop\SmartPDU\trunk\ZGLJ-PDU-APP-master\settings\HTTP-PDU.Debug.general.xcl" --backend -f "C:\Users\Zachary Chou\Desktop\SmartPDU\trunk\ZGLJ-PDU-APP-master\settings\HTTP-PDU.Debug.driver.xcl" 
+
+@echo off 
+goto end 
+
+:debugFile 
+
+@echo on 
+
+"D:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\common\bin\cspybat" -f "C:\Users\Zachary Chou\Desktop\SmartPDU\trunk\ZGLJ-PDU-APP-master\settings\HTTP-PDU.Debug.general.xcl" "--debug_file=%~1" --backend -f "C:\Users\Zachary Chou\Desktop\SmartPDU\trunk\ZGLJ-PDU-APP-master\settings\HTTP-PDU.Debug.driver.xcl" 
+
+@echo off 
+:end

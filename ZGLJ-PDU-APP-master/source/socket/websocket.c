@@ -406,7 +406,14 @@ endpack:
                             {
                                 wsendbuff[wsendlen]=' ';
                                 wsendlen += 1;
-                                wsendlen+=sprintf((char *)(wsendbuff+wsendlen), \
+                                wsendlen+=snprintf((char *)(wsendbuff+wsendlen), 2*WS_MAX_BYTES-wsendlen, \
+                                     (char *)ConfigMsg.Devicelist[pool].IdName);
+                                if(wsendlen>=2*WS_MAX_BYTES)
+                                {
+                                    wsendlen=2*WS_MAX_BYTES;
+                                    break;
+                                }
+                                //wsendlen+=sprintf((char *)(wsendbuff+wsendlen), \
                                      (char *)ConfigMsg.Devicelist[pool].IdName);
                             }
                         }
@@ -499,7 +506,7 @@ endpack:
                                     uint8 i,j;
                                     i=pool/4;
                                     j=pool%4;
-                                    wsendlen+=sprintf((char *)(wsendbuff+wsendlen), \
+                                    wsendlen+=snprintf((char *)(wsendbuff+wsendlen), 2*WS_MAX_BYTES-wsendlen, \
                                             "tp=%3s st=%d vu=%d vl=%d cu=%.1f pu=%.1f ot=%d ", \
                                              ConfigMsg.s_powerattrib[pool].type, \
                                              gOutletStatus[i].Outlet[j], \
@@ -508,6 +515,11 @@ endpack:
                                              ConfigMsg.s_powerattrib[pool].cur_uplimit, \
                                              ConfigMsg.s_powerattrib[pool].power_uplimit, \
                                              gOutletStatus[i].Out_Time[j]);
+                                    if(wsendlen>=2*WS_MAX_BYTES)
+                                    {
+                                        wsendlen=2*WS_MAX_BYTES;
+                                        break;
+                                    }
                                 }
                             }
                             else
@@ -551,10 +563,15 @@ endpack:
                                 {
                                     if(ConfigMsg.usergroup[pool].type<3 && ConfigMsg.usergroup[pool].type>0)
                                     {
-                                        wsendlen+=sprintf((char *)wsendbuff+wsendlen, \
+                                        wsendlen+=snprintf((char *)(wsendbuff+wsendlen), 2*WS_MAX_BYTES-wsendlen, \
                                                 "name=%s usertype=%d ", \
                                                 ConfigMsg.usergroup[pool].username,
                                                 ConfigMsg.usergroup[pool].type);
+                                        if(wsendlen>=2*WS_MAX_BYTES)
+                                        {
+                                            wsendlen=2*WS_MAX_BYTES;
+                                            break;
+                                        }
                                     }
                                 }
                             }
@@ -657,13 +674,18 @@ endpack:
                                 uint8 i,j;
                                 i=x/4;
                                 j=x%4;
-                                wsendlen+=sprintf((char *)wsendbuff+wsendlen, \
+                                wsendlen+=snprintf((char *)(wsendbuff+wsendlen), 2*WS_MAX_BYTES-wsendlen, \
                                          "status=%d realvol=%.1f cur=%.1f power=%.1f energy=%.1f", \
                                          gOutletStatus[i].Outlet[j], \
                                          gPowerSlaveArgs[i][j].gVoltage, \
                                          gPowerSlaveArgs[i][j].gCurrent, \
                                          gPowerSlaveArgs[i][j].gPowerP, \
                                          gPowerSlaveArgs[i][j].gEnergyP);
+                                if(wsendlen>=2*WS_MAX_BYTES)
+                                {
+                                    wsendlen=2*WS_MAX_BYTES;
+                                    break;
+                                }
                             }
                         }
                         else
@@ -931,7 +953,7 @@ end_outlet:
 								{
 									if(ConfigMsg.Outletorder[i].validflag == 1)
 									{
-										wsendlen+=sprintf((char *)(wsendbuff+wsendlen), \
+										wsendlen+=snprintf((char *)(wsendbuff+wsendlen), 2*WS_MAX_BYTES-wsendlen, \
                                             "outlet=%d repeat=%d date=%d-%d-%d %d-%d-%d action=%d num=%d ", \
                                              ConfigMsg.Outletorder[i].outletnum, \
                                              ConfigMsg.Outletorder[i].repeat, \
@@ -942,6 +964,11 @@ end_outlet:
                                              ConfigMsg.Outletorder[i].date.Min, \
                                              ConfigMsg.Outletorder[i].date.Sec, \
                                              ConfigMsg.Outletorder[i].action, i);
+                                        if(wsendlen>=2*WS_MAX_BYTES)
+                                        {
+                                            wsendlen=2*WS_MAX_BYTES;
+                                            break;
+                                        }
 									}
 								}
                             }
@@ -1397,12 +1424,17 @@ end_delete_user:
                                     {
                                         temptime=*(Date_type_t*)&buff[0];
                                         temppower=*(float *)&buff[4];
-                                        wsendlen+=sprintf((char *)wsendbuff+wsendlen, \
+                                        wsendlen+=snprintf((char *)(wsendbuff+wsendlen), 2*WS_MAX_BYTES-wsendlen, \
                                                 "%d-%d-%d %d-%d-%d %.1f&", \
                                                 temptime.Year, temptime.Mon, \
                                                 temptime.Day, temptime.Hour, \
                                                 temptime.Min, temptime.Sec, \
                                                 temppower);
+                                        if(wsendlen>=2*WS_MAX_BYTES)
+                                        {
+                                            wsendlen=2*WS_MAX_BYTES;
+                                            break;
+                                        }
                                     }
                                     else
                                     {
@@ -1455,12 +1487,17 @@ end_delete_user:
                                     {
                                         temptime=*(Date_type_t*)&buff[0];
                                         temppower=*(float *)&buff[4];
-                                        wsendlen+=sprintf((char *)wsendbuff+wsendlen, \
+                                        wsendlen+=snprintf((char *)(wsendbuff+wsendlen), 2*WS_MAX_BYTES-wsendlen, \
                                                 "%d-%d-%d %d-%d-%d %.1f&", \
                                                 temptime.Year, temptime.Mon, \
                                                 temptime.Day, temptime.Hour, \
                                                 temptime.Min, temptime.Sec, \
                                                 temppower);
+                                        if(wsendlen>=2*WS_MAX_BYTES)
+                                        {
+                                            wsendlen=2*WS_MAX_BYTES;
+                                            break;
+                                        }
                                     }
                                     else
                                     {
@@ -1497,7 +1534,7 @@ end_delete_user:
                             {
                                 if(gAlarmrecord[pool].comewhere)
                                 {
-                                    wsendlen+=sprintf((char *)wsendbuff+wsendlen, \
+                                    wsendlen+=snprintf((char *)(wsendbuff+wsendlen), 2*WS_MAX_BYTES-wsendlen, \
                                             "%d-%d-%d %d-%d-%d %d %d %.1f %.1f %d&", \
                                             gAlarmrecord[pool].date.Year, gAlarmrecord[pool].date.Mon, \
                                             gAlarmrecord[pool].date.Day, gAlarmrecord[pool].date.Hour, \
@@ -1505,6 +1542,11 @@ end_delete_user:
                                             (uint8)gAlarmrecord[pool].type, gAlarmrecord[pool].comewhere, \
                                             gAlarmrecord[pool].limit_value, gAlarmrecord[pool].value, \
                                             gAlarmrecord[pool].notdone);
+                                    if(wsendlen>=2*WS_MAX_BYTES)
+                                    {
+                                        wsendlen=2*WS_MAX_BYTES;
+                                        break;
+                                    }
                                 }
                             }
                             if(wsendlen > strlen("alarm "))
@@ -1534,7 +1576,7 @@ end_delete_user:
                                     if((buff[0] != 0xff)&&(buff[4] != 0xff))
                                     {
                                         temprecord=*(Alarm_Record_t*)&Rbuff[0];
-                                        wsendlen+=sprintf((char *)wsendbuff+wsendlen, \
+                                        wsendlen+=snprintf((char *)(wsendbuff+wsendlen), 2*WS_MAX_BYTES-wsendlen, \
                                                 "%d-%d-%d %d-%d-%d %d %d %.1f %.1f %d&", \
                                                 temprecord.date.Year, temprecord.date.Mon, \
                                                 temprecord.date.Day, temprecord.date.Hour, \
@@ -1542,6 +1584,11 @@ end_delete_user:
                                                 (uint8)temprecord.type, temprecord.comewhere, \
                                                 temprecord.limit_value, temprecord.value, \
                                                 temprecord.notdone);
+                                        if(wsendlen>=2*WS_MAX_BYTES)
+                                        {
+                                            wsendlen=2*WS_MAX_BYTES;
+                                            break;
+                                        }
                                     }
                                     else
                                     {
